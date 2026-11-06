@@ -16,15 +16,18 @@
 
 ## 2. Kết quả chính
 
-                                     f1  f1_SUB    p95_ms  usd_per_1k
-1. BoW + LogReg (tự code)        0.905   0.919     0.118       0.000
-2. BoW + MLP (deep learning)     0.960   0.950     0.373       0.000
-3a. Encoder (MiniLM) + kNN       0.925   1.000   118.783       0.000
-3b. Encoder (MiniLM) + LogReg    0.957   0.974    35.947       0.000
-3c. Encoder (MiniLM) + MLP head  0.952   0.974    35.457       0.000
-4a. LLM nhỏ zero-shot            0.923   0.923  1351.673       0.006
-4b. LLM lớn zero-shot            0.974   0.974  1331.859       0.063
-4c. LLM nhỏ few-shot             0.974   0.974  1761.343       0.016
+| Cách tiếp cận | F1 test | F1 SUB (40) | p95 ms/tin | USD / 1k tin |
+| --- | --- | --- | --- | --- |
+| 1. BoW + LogReg (tự code) | 0.905 | 0.919 | 0.12 | 0 |
+| 2. BoW + MLP | 0.960 | 0.950 | 0.37 | 0 |
+| 3a. Encoder + kNN | 0.925 | 1.000 | 118.78 | 0 |
+| 3b. Encoder + LogReg | 0.957 | 0.974 | 35.95 | 0 |
+| 3c. Encoder + MLP head | 0.952 | 0.974 | 35.46 | 0 |
+| 4a. LLM nhỏ zero-shot | — | 0.923 | 1351.67 | 0.006 |
+| 4b. LLM lớn zero-shot | — | 0.974 | 1331.86 | 0.063 |
+| 4c. LLM nhỏ few-shot | — | 0.974 | 1761.34 | 0.016 |
+
+Trên SUB 40 tin, một tin sai làm F1 lệch khoảng 2.5 điểm %, nên chênh dưới khoảng 5 điểm được coi là hòa. Đường Pareto (theo F1 SUB) gồm: BoW + LogReg, BoW + MLP, 3c và 3a. Các cách đạt SLA p95 < 50 ms: 1, 2, 3b, 3c. Ba cách LLM nằm ngoài SLA (p95 trên 1,3 giây) và bị 3a lấn át (3a nhanh hơn và F1 SUB cao hơn).
 
 ## 3. Dự đoán và thực tế
 
